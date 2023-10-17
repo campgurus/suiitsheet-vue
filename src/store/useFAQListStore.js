@@ -7,13 +7,19 @@ export const useFAQListStore = defineStore('FAQList', {
         id: 0,
     }),
     actions: {
-        addQuestion(item) {
-            this.FAQList.push({ item, id: this.id++, completed: false })
+        addQuestion(question) {
+            this.FAQList.push({ question, id: this.id++, completed: false })
         },
-        deleteTodo(itemID) {
+        deleteQuestion(questionID) {
             this.FAQList = this.FAQList.filter((object) => {
-                return object.id !== itemID;
+                return object.id !== questionID;
             });
+        },
+        toggleCompleted(idToFind) {
+            const question = this.FAQList.find((obj) => obj.id === idToFind);
+            if (question) {
+                question.completed = !question.completed;
+            }
         },
     },
 })
