@@ -26,7 +26,7 @@ export default defineComponent({
 .faq-app {
   padding: 5vh;
   min-height: 100vh;
-  width: 30vw;
+  width: 100vw;
   background-color: #f7f9fc;
 }
 </style>

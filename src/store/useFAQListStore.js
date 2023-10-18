@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
-
-
+import API from "@/utils/API";
 export const useFAQListStore = defineStore('FAQList', {
     state: () => ({
         FAQList: [],
@@ -21,5 +20,15 @@ export const useFAQListStore = defineStore('FAQList', {
                 question.completed = !question.completed;
             }
         },
+        async getQuestions() {
+            try {
+                const data = await API.get('')
+                this.users = data.data
+            }
+            catch (error) {
+                alert(error)
+                console.log(error)
+            }
+        }
     },
 })
