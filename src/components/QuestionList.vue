@@ -35,14 +35,8 @@ export default defineComponent({
       >
         <v-expansion-panel-title>
           <v-row no-gutters>
-            <v-col cols="4" class="d-flex justify-start">
-              Question
-            </v-col>
-            <v-col
-                cols="8"
-                class="text--secondary"
-            >
-              {{ question.body }}
+            <v-col class="d-flex justify-start">
+              <strong class="mr-2">Question: </strong> {{ question.body }}
             </v-col>
           </v-row>
         </v-expansion-panel-title>

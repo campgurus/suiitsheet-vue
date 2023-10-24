@@ -13,7 +13,7 @@
 
 <script>
 import { defineComponent } from "vue";
-import QuestionForm from "./CompQuestionForm.vue";
+import QuestionForm from "./QuestionForm.vue";
 import QuestionList from "./QuestionList.vue";
 export default defineComponent({
   components: { QuestionForm, QuestionList },
