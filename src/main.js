@@ -9,7 +9,6 @@ import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
-import { mdiAccount } from '@mdi/js'
 
 const vuetify= createVuetify({
     icons: {
@@ -25,7 +24,6 @@ const vuetify= createVuetify({
 
 createApp(App)
     .use(createPinia())
-    .use(mdiAccount)
     .use(router)
     .use(vuetify)
     .mount('#app')
