@@ -22,8 +22,8 @@ export const useFAQListStore = defineStore('FAQList', {
         },
         async getQuestions() {
             try {
-                const data = await API.get('')
-                this.users = data.data
+                const data = await API.get('/questions')
+                this.FAQList = data.data
             }
             catch (error) {
                 alert(error)

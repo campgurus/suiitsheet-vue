@@ -3,47 +3,27 @@ import {defineComponent} from 'vue'
 
 export default defineComponent({
   // eslint-disable-next-line vue/multi-word-component-names
-  name: "Question"
+  name: "Question",
+  props: {
+    question: {
+      type: Object,
+      default() {
+        return {}
+      }
+    }
+  }
 })
 </script>
 
 <template>
-  <section>
-    <b-collapse
-        v-for="question in FAQList" :key="question.id"
-        class="card"
-        animation="slide"
-        aria-id="contentIdForA11y3">
-      <template #trigger="props">
-        <div
-            class="card-header"
-            role="button"
-            aria-controls="contentIdForA11y3"
-            :aria-expanded="props.open">
-          <p class="card-header-title">
-            Component
-          </p>
-          <a class="card-header-icon">
-            <b-icon
-                :icon="props.open ? 'menu-down' : 'menu-up'">
-            </b-icon>
-          </a>
-        </div>
-      </template>
-
-      <div class="card-content">
-        <div class="content">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
-          <a>#buefy</a>.
-        </div>
-      </div>
-      <footer class="card-footer">
-        <a class="card-footer-item">Answer</a>
-        <a class="card-footer-item">Edit</a>
-        <a class="card-footer-item">Delete</a>
-      </footer>
-    </b-collapse>
-  </section>
+  <v-expansion-panels variant="inset" class="my-4">
+    <v-expansion-panel
+        v-for="i in 3"
+        :key="i"
+        title="Item"
+        text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    ></v-expansion-panel>
+  </v-expansion-panels>
 </template>
 
 <style scoped>
