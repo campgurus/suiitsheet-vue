@@ -6,6 +6,14 @@ export default defineComponent({
   data: () => ({
     dialog: false,
   }),
+  props: {
+    question: {
+      type: Object,
+      default() {
+        return {}
+      }
+    }
+  },
 })
 </script>
 
@@ -20,7 +28,8 @@ export default defineComponent({
           color="primary"
           v-bind="props"
       >
-        Open Dialog
+        <span v-if="question.id">Edit Question</span>
+        <span v-else>Add Question</span>
       </v-btn>
     </template>
     <v-card>

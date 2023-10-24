@@ -21,7 +21,6 @@ export default defineComponent({
 
 <template>
   <div class="">
-    <question-form />
     <v-expansion-panels variant="inset" class="my-4">
       <v-expansion-panel
           v-for="i in 3"

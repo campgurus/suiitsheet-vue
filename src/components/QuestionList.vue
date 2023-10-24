@@ -1,6 +1,7 @@
 <script>
 import {defineComponent} from 'vue'
 import API from "@/utils/API";
+import { mdiPencil } from '@mdi/js';
 // import { useFAQListStore } from '../store/useFAQListStore'
 // const store = useFAQListStore;
 
@@ -8,7 +9,8 @@ export default defineComponent({
   name: "QuestionList",
   data () {
     return {
-      questions: []
+      questions: [],
+      mdiPencil
     }
   },
   async mounted () {
@@ -35,9 +37,12 @@ export default defineComponent({
       >
         <v-expansion-panel-title>
           <v-row no-gutters>
-            <v-col class="d-flex justify-start">
+            <v-col-10 class="d-flex justify-start">
               <strong class="mr-2">Question: </strong> {{ question.body }}
-            </v-col>
+            </v-col-10>
+            <v-col-2>
+              <v-icon :icon="mdiPencil" />
+            </v-col-2>
           </v-row>
         </v-expansion-panel-title>
         <v-expansion-panel-text>
@@ -63,39 +68,6 @@ export default defineComponent({
         </v-expansion-panel-text>
       </v-expansion-panel>
     </v-expansion-panels>
-<!--    <b-collapse-->
-<!--        v-for="question in questions" :key="question.id"-->
-<!--        class="card"-->
-<!--        animation="slide"-->
-<!--        aria-id="contentIdForA11y3">-->
-<!--      <template #trigger="props">-->
-<!--        <div-->
-<!--            class="card-header"-->
-<!--            role="button"-->
-<!--            aria-controls="contentIdForA11y3"-->
-<!--            :aria-expanded="props.open">-->
-<!--          <p class="card-header-title">-->
-<!--            Component-->
-<!--          </p>-->
-<!--          <a class="card-header-icon">-->
-<!--            <b-icon-->
-<!--                :icon="props.open ? 'menu-down' : 'menu-up'">-->
-<!--            </b-icon>-->
-<!--          </a>-->
-<!--        </div>-->
-<!--      </template>-->
-
-<!--      <div class="card-content">-->
-<!--        <div class="content">-->
-<!--          {{ question.body }}-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      <footer class="card-footer">-->
-<!--        <a class="card-footer-item">Answer</a>-->
-<!--        <a class="card-footer-item">Edit</a>-->
-<!--        <a class="card-footer-item">Delete</a>-->
-<!--      </footer>-->
-<!--    </b-collapse>-->
   </section>
 </template>
 
