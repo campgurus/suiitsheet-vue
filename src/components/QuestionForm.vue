@@ -1,10 +1,14 @@
 <script>
 import {defineComponent} from 'vue'
+import {mdiPencil} from "@mdi/js";
+import API from "@/utils/API";
 
 export default defineComponent({
   name: "QuestionForm",
   data: () => ({
     dialog: false,
+    mdiPencil,
+    formQuestion: ''
   }),
   props: {
     question: {
@@ -14,6 +18,19 @@ export default defineComponent({
       }
     }
   },
+  mounted() {
+    if (this.question) {
+      this.formQuestion = this.question
+    }
+  },
+  methods: {
+    async saveQuestion () {
+      await API.put(`/questions/${this.question.id}`, {
+        body: this.formQuestion.body
+      })
+      this.dialog = false
+    }
+  }
 })
 </script>
 
@@ -28,13 +45,12 @@ export default defineComponent({
           color="primary"
           v-bind="props"
       >
-        <span v-if="question.id">Edit Question</span>
-        <span v-else>Add Question</span>
+        <v-icon :icon="mdiPencil" />
       </v-btn>
     </template>
     <v-card>
       <v-card-title>
-        <span class="text-h5">User Profile</span>
+        <span class="text-h5">Question</span>
       </v-card-title>
       <v-card-text>
         <v-container>
@@ -45,8 +61,9 @@ export default defineComponent({
                 md="4"
             >
               <v-text-field
-                  label="Question"
+                  label="Add/Edit Question"
                   required
+                  v-model="formQuestion.body"
               ></v-text-field>
             </v-col>
           </v-row>
@@ -65,7 +82,7 @@ export default defineComponent({
         <v-btn
             color="blue-darken-1"
             variant="text"
-            @click="dialog = false"
+            @click="saveQuestion"
         >
           Save
         </v-btn>

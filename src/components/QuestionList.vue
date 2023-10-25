@@ -2,11 +2,13 @@
 import {defineComponent} from 'vue'
 import API from "@/utils/API";
 import { mdiPencil } from '@mdi/js';
+import QuestionForm from "@/components/QuestionForm.vue";
 // import { useFAQListStore } from '../store/useFAQListStore'
 // const store = useFAQListStore;
 
 export default defineComponent({
   name: "QuestionList",
+  components: {QuestionForm},
   data () {
     return {
       questions: [],
@@ -39,9 +41,10 @@ export default defineComponent({
           <v-row no-gutters>
             <v-col-10 class="d-flex justify-start">
               <strong class="mr-2">Question: </strong> {{ question.body }}
+              <span>Answers: {{ question.answers.length }} </span>
             </v-col-10>
             <v-col-2>
-              <v-icon :icon="mdiPencil" />
+              <question-form :question="question"/>
             </v-col-2>
           </v-row>
         </v-expansion-panel-title>
