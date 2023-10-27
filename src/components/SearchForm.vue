@@ -1,5 +1,6 @@
 <script>
 import {defineComponent} from 'vue'
+import API from "@/utils/API";
 
 export default defineComponent({
   name: "SearchForm",
@@ -10,7 +11,12 @@ export default defineComponent({
   },
   methods: {
     async findQuestions () {
-
+      const results = API.get('/questions', {
+        params: {
+          search: this.query
+        }
+      })
+      this.$emit('update-questions', results)
     }
   }
 })

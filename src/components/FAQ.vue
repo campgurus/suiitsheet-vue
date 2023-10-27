@@ -4,6 +4,7 @@
 
     <div class="section">
       <div class="container">
+        <search-form />
         <new-question-form/>
         <question-list />
       </div>
@@ -16,8 +17,9 @@ import { defineComponent } from "vue";
 import QuestionForm from "./EditQuestionForm.vue";
 import QuestionList from "./QuestionList.vue";
 import NewQuestionForm from "@/components/NewQuestionForm.vue";
+import SearchForm from "@/components/SearchForm.vue";
 export default defineComponent({
-  components: {NewQuestionForm, QuestionForm, QuestionList },
+  components: {SearchForm, NewQuestionForm, QuestionForm, QuestionList },
   setup() {
     return {};
   },
