@@ -4,6 +4,7 @@ import API from "@/utils/API";
 import { mdiPencil } from '@mdi/js';
 import EditQuestionForm from "@/components/EditQuestionForm.vue";
 import AnswerText from "@/components/AnswerText.vue";
+import NewAnswerForm from "@/components/NewAnswerForm.vue";
 // import { useFAQListStore } from '../store/useFAQListStore'
 // const store = useFAQListStore;
 
@@ -11,7 +12,8 @@ export default defineComponent({
   name: "QuestionList",
   components: {
     EditQuestionForm,
-    AnswerText
+    AnswerText,
+    NewAnswerForm
   },
   data () {
     return {
@@ -71,12 +73,9 @@ export default defineComponent({
             >
               Cancel
             </v-btn>
-            <v-btn
-                variant="text"
-                color="primary"
-            >
-              Save
-            </v-btn>
+            <new-answer-form
+                :question="question"
+            />
           </v-card-actions>
         </v-expansion-panel-text>
       </v-expansion-panel>
