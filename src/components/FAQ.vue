@@ -4,7 +4,7 @@
 
     <div class="section">
       <div class="container">
-        <question-form />
+        <new-question-form />
         <question-list />
       </div>
     </div>
@@ -13,10 +13,11 @@
 
 <script>
 import { defineComponent } from "vue";
-import QuestionForm from "./QuestionForm.vue";
+import QuestionForm from "./EditQuestionForm.vue";
 import QuestionList from "./QuestionList.vue";
+import NewQuestionForm from "@/components/NewQuestionForm.vue";
 export default defineComponent({
-  components: { QuestionForm, QuestionList },
+  components: {NewQuestionForm, QuestionForm, QuestionList },
   setup() {
     return {};
   },

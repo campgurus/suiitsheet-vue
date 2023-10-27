@@ -2,13 +2,15 @@
 import {defineComponent} from 'vue'
 import API from "@/utils/API";
 import { mdiPencil } from '@mdi/js';
-import QuestionForm from "@/components/QuestionForm.vue";
+import EditQuestionForm from "@/components/EditQuestionForm.vue";
 // import { useFAQListStore } from '../store/useFAQListStore'
 // const store = useFAQListStore;
 
 export default defineComponent({
   name: "QuestionList",
-  components: {QuestionForm},
+  components: {
+    EditQuestionForm
+  },
   data () {
     return {
       questions: [],
@@ -44,7 +46,7 @@ export default defineComponent({
               <span>Answers: {{ question.answers.length }} </span>
             </v-col-10>
             <v-col-2>
-              <question-form :question="question"/>
+              <edit-question-form :question="question"/>
             </v-col-2>
           </v-row>
         </v-expansion-panel-title>

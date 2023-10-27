@@ -1,6 +1,6 @@
 <script>
 import {defineComponent} from 'vue'
-import QuestionForm from './QuestionForm.vue'
+import QuestionForm from './EditQuestionForm.vue'
 
 export default defineComponent({
   // eslint-disable-next-line vue/multi-word-component-names

@@ -4,29 +4,18 @@ import {mdiPencil} from "@mdi/js";
 import API from "@/utils/API";
 
 export default defineComponent({
-  name: "QuestionForm",
+  name: "NewQuestionForm",
   data: () => ({
     dialog: false,
     mdiPencil,
     formQuestion: ''
   }),
-  props: {
-    question: {
-      type: Object,
-      default() {
-        return {}
-      }
-    }
-  },
-  mounted() {
-    if (this.question) {
-      this.formQuestion = this.question
-    }
-  },
   methods: {
     async saveQuestion () {
-      await API.put(`/questions/${this.question.id}`, {
-        body: this.formQuestion.body
+      await API.post(`/questions/`, {
+        question: {
+          body: this.formQuestion
+        }
       })
       this.dialog = false
     }
@@ -50,7 +39,7 @@ export default defineComponent({
     </template>
     <v-card>
       <v-card-title>
-        <span class="text-h5">Question</span>
+        <span class="text-h5">Add a Question</span>
       </v-card-title>
       <v-card-text>
         <v-container>
@@ -61,9 +50,8 @@ export default defineComponent({
                 md="4"
             >
               <v-text-field
-                  label="Add/Edit Question"
                   required
-                  v-model="formQuestion.body"
+                  v-model="formQuestion"
               ></v-text-field>
             </v-col>
           </v-row>
@@ -94,3 +82,4 @@ export default defineComponent({
 <style scoped>
 
 </style>
+
