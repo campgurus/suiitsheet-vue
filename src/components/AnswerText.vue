@@ -1,5 +1,6 @@
 <script>
 import {defineComponent} from 'vue'
+import API from '@/utils/API'
 
 export default defineComponent({
   name: "AnswerText",
@@ -10,15 +11,29 @@ export default defineComponent({
         return {}
       }
     }
+  },
+  methods: {
+    async deleteAnswer () {
+      await API.delete(`/questions/${this.answer.question_id}/answers/${this.answer.id}`)
+    }
   }
 })
 </script>
 
 <template>
-  <v-card
-      :text="answer.body"
-      variant="tonal"
-  ></v-card>
+  <div class="">
+    <v-card
+        :text="answer.body"
+        variant="tonal"
+    >
+      <v-btn
+        @click="deleteAnswer"
+      >
+        Discard
+      </v-btn>
+    </v-card>
+    <br>
+  </div>
 </template>
 
 <style scoped>

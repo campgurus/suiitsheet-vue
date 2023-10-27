@@ -67,12 +67,6 @@ export default defineComponent({
 
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn
-                variant="text"
-                color="secondary"
-            >
-              Cancel
-            </v-btn>
             <new-answer-form
                 :question="question"
             />
