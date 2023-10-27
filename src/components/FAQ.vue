@@ -4,7 +4,7 @@
 
     <div class="section">
       <div class="container">
-        <new-question-form />
+        <new-question-form/>
         <question-list />
       </div>
     </div>

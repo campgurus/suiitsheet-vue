@@ -3,13 +3,15 @@ import {defineComponent} from 'vue'
 import API from "@/utils/API";
 import { mdiPencil } from '@mdi/js';
 import EditQuestionForm from "@/components/EditQuestionForm.vue";
+import AnswerText from "@/components/AnswerText.vue";
 // import { useFAQListStore } from '../store/useFAQListStore'
 // const store = useFAQListStore;
 
 export default defineComponent({
   name: "QuestionList",
   components: {
-    EditQuestionForm
+    EditQuestionForm,
+    AnswerText
   },
   data () {
     return {
@@ -52,7 +54,13 @@ export default defineComponent({
         </v-expansion-panel-title>
         <v-expansion-panel-text>
           <v-row no-gutters>
-            Talking Points go here
+            <answer-text
+              v-for="answer in question.answers"
+              :key="answer.id"
+              :answer="answer"
+            >
+
+            </answer-text>
           </v-row>
 
           <v-card-actions>
