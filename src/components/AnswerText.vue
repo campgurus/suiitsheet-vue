@@ -14,7 +14,9 @@ export default defineComponent({
   },
   methods: {
     async deleteAnswer () {
-      await API.delete(`/questions/${this.answer.question_id}/answers/${this.answer.id}`)
+      if (confirm("Do you really want to delete?")) {
+        await API.delete(`/questions/${this.answer.question_id}/answers/${this.answer.id}`)
+      }
     }
   }
 })
