@@ -47,7 +47,6 @@ export default defineComponent({
           <v-row no-gutters>
             <v-col-10 class="d-flex justify-start">
               <strong class="mr-2">Question: </strong> {{ question.body }}
-              <span>Answers: {{ question.answers.length }} </span>
             </v-col-10>
             <v-col-2>
               <edit-question-form :question="question"/>
@@ -55,10 +54,12 @@ export default defineComponent({
           </v-row>
         </v-expansion-panel-title>
         <v-expansion-panel-text>
-          <v-row no-gutters>
-            <answer-text
+          <v-row
               v-for="answer in question.answers"
               :key="answer.id"
+              no-gutters
+          >
+            <answer-text
               :answer="answer"
             >
 

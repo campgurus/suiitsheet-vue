@@ -23,14 +23,25 @@ export default defineComponent({
 <template>
   <div class="">
     <v-card
-        :text="answer.body"
-        variant="tonal"
+        class="px-0"
+        variant="outlined"
+        width="100%"
+        fluid
     >
-      <v-btn
-        @click="deleteAnswer"
-      >
-        Discard
-      </v-btn>
+      <v-card-text>
+        <p class="text-left">
+          {{ answer.body }}
+        </p>
+      </v-card-text>
+      <v-card-actions>
+        <v-btn
+            color="red-lighten-2"
+            variant="text"
+            @click="deleteAnswer"
+        >
+          Discard
+        </v-btn>
+      </v-card-actions>
     </v-card>
     <br>
   </div>

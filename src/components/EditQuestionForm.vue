@@ -45,7 +45,7 @@ export default defineComponent({
           color="primary"
           v-bind="props"
       >
-        <v-icon :icon="mdiPencil" />
+        <p>Edit</p>
       </v-btn>
     </template>
     <v-card>
