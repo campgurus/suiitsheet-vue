@@ -1,6 +1,5 @@
 <script>
 import {defineComponent} from 'vue'
-// import API from "@/utils/API";
 import { mdiPencil } from '@mdi/js';
 import EditQuestionForm from "@/components/EditQuestionForm.vue";
 import AnswerText from "@/components/AnswerText.vue";
@@ -24,7 +23,7 @@ export default defineComponent({
     ...mapState(useFAQListStore, ["FAQList"])
   },
   async mounted () {
-    this.getQuestions()
+    await this.getQuestions()
   },
   methods: {
     ...mapActions(useFAQListStore, ["getQuestions"])

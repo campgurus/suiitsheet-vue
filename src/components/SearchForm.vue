@@ -1,6 +1,8 @@
 <script>
 import {defineComponent} from 'vue'
 import API from "@/utils/API";
+import { useFAQListStore } from '../store/useFAQListStore';
+import { mapActions } from "pinia";
 
 export default defineComponent({
   name: "SearchForm",
@@ -10,13 +12,15 @@ export default defineComponent({
     }
   },
   methods: {
+    ...mapActions(useFAQListStore, ["setQuestions"]),
     async findQuestions () {
-      const results = API.get('/questions', {
+      const results = await API.get('/questions', {
         params: {
           search: this.query
         }
       })
-      this.$emit('update-questions', results)
+      console.log('search results are: ', results.data)
+      this.setQuestions(results.data)
     }
   }
 })

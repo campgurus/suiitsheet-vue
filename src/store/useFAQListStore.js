@@ -29,6 +29,14 @@ export const useFAQListStore = defineStore('FAQList', {
                 alert(error)
                 console.log(error)
             }
+        },
+        async setQuestions(questions) {
+            try {
+                this.FAQList = questions
+            } catch (error) {
+                alert(error)
+                console.log(error)
+            }
         }
     },
 })
