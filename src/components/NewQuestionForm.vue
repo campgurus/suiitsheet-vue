@@ -2,6 +2,8 @@
 import {defineComponent} from 'vue'
 import {mdiPencil} from "@mdi/js";
 import API from "@/utils/API";
+import { useFAQListStore } from '../store/useFAQListStore';
+import { mapActions } from "pinia";
 
 export default defineComponent({
   name: "NewQuestionForm",
@@ -11,12 +13,14 @@ export default defineComponent({
     formQuestion: ''
   }),
   methods: {
+    ...mapActions(useFAQListStore, ["getQuestions"]),
     async saveQuestion () {
       await API.post(`/questions/`, {
         question: {
           body: this.formQuestion
         }
       })
+      await this.getQuestions()
       this.dialog = false
     }
   }
