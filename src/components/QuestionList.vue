@@ -6,6 +6,7 @@ import AnswerText from "@/components/AnswerText.vue";
 import NewAnswerForm from "@/components/NewAnswerForm.vue";
 import { useFAQListStore } from '../store/useFAQListStore';
 import { mapState, mapActions } from "pinia";
+import API from "@/utils/API";
 
 export default defineComponent({
   name: "QuestionList",
@@ -26,7 +27,13 @@ export default defineComponent({
     await this.getQuestions()
   },
   methods: {
-    ...mapActions(useFAQListStore, ["getQuestions"])
+    ...mapActions(useFAQListStore, ["getQuestions"]),
+    async deleteQuestion (question) {
+      if (confirm("Do you really want to delete this question?")) {
+        await API.delete(`/questions/${question.id}`)
+        await this.getQuestions()
+      }
+    }
   }
 })
 </script>
@@ -46,6 +53,9 @@ export default defineComponent({
             <v-col-2>
               <edit-question-form :question="question"/>
             </v-col-2>
+            <v-btn
+                @click="deleteQuestion(question)"
+            >DELETE</v-btn>
           </v-row>
         </v-expansion-panel-title>
         <v-expansion-panel-text>

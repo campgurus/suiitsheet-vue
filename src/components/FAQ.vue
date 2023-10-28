@@ -14,12 +14,11 @@
 
 <script>
 import { defineComponent } from "vue";
-import QuestionForm from "./EditQuestionForm.vue";
 import QuestionList from "./QuestionList.vue";
 import NewQuestionForm from "@/components/NewQuestionForm.vue";
 import SearchForm from "@/components/SearchForm.vue";
 export default defineComponent({
-  components: {SearchForm, NewQuestionForm, QuestionForm, QuestionList },
+  components: {SearchForm, NewQuestionForm, QuestionList },
   setup() {
     return {};
   },
