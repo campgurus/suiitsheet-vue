@@ -1,12 +1,12 @@
 <script>
 import {defineComponent} from 'vue'
-import API from "@/utils/API";
+// import API from "@/utils/API";
 import { mdiPencil } from '@mdi/js';
 import EditQuestionForm from "@/components/EditQuestionForm.vue";
 import AnswerText from "@/components/AnswerText.vue";
 import NewAnswerForm from "@/components/NewAnswerForm.vue";
-// import { useFAQListStore } from '../store/useFAQListStore'
-// const store = useFAQListStore;
+import { useFAQListStore } from '../store/useFAQListStore';
+import { mapState, mapActions } from "pinia";
 
 export default defineComponent({
   name: "QuestionList",
@@ -17,21 +17,17 @@ export default defineComponent({
   },
   data () {
     return {
-      questions: [],
       mdiPencil
     }
+  },
+  computed: {
+    ...mapState(useFAQListStore, ["FAQList"])
   },
   async mounted () {
     this.getQuestions()
   },
   methods: {
-    async getQuestions () {
-      const results = await API.get ('/questions')
-      if (results.data.length > 0 ) { //is conditional needed?
-        this.questions = results.data
-      }
-      console.log('here are the questions: ', this.questions)
-    }
+    ...mapActions(useFAQListStore, ["getQuestions"])
   }
 })
 </script>
@@ -40,7 +36,7 @@ export default defineComponent({
   <section>
     <v-expansion-panels>
       <v-expansion-panel
-          v-for="question in questions"
+          v-for="question in FAQList"
           :key="question.id"
       >
         <v-expansion-panel-title>
