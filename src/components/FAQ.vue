@@ -1,14 +1,8 @@
 <template>
-  <div class="faq-app">
-    <h1>Sui FAQ List</h1>
-
-    <div class="section">
-      <div class="container">
-        <search-form />
-        <new-question-form/>
-        <question-list />
-      </div>
-    </div>
+  <div class="">
+    <search-form />
+    <new-question-form/>
+    <question-list />
   </div>
 </template>
 
@@ -18,7 +12,7 @@ import QuestionList from "./QuestionList.vue";
 import NewQuestionForm from "@/components/NewQuestionForm.vue";
 import SearchForm from "@/components/SearchForm.vue";
 export default defineComponent({
-  components: {SearchForm, NewQuestionForm, QuestionList },
+  components: { SearchForm, NewQuestionForm, QuestionList },
   setup() {
     return {};
   },

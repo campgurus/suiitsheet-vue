@@ -19,7 +19,7 @@ const vuetify= createVuetify({
         },
     },
     components,
-    directives,
+    directives
 })
 
 createApp(App)
