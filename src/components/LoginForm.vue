@@ -2,7 +2,12 @@
 import {defineComponent} from 'vue'
 
 export default defineComponent({
-  name: "LoginForm"
+  name: "LoginForm",
+  data: () => ({
+    email: null,
+    password: null,
+    isValid: true
+  })
 })
 </script>
 
@@ -10,7 +15,7 @@ export default defineComponent({
   <v-card class="mx-15">
     <v-card-title>Login Form</v-card-title>
     <v-card-text>
-      <v-form>
+      <v-form v-model="isValid">
         <v-text-field
             label="Email"
             v-model="email"
@@ -27,7 +32,12 @@ export default defineComponent({
       </v-form>
     </v-card-text>
     <v-card-actions>
-      <v-btn color="primary">Login</v-btn>
+      <v-btn
+          color="primary"
+          :disabled="!isValid"
+      >
+        Login
+      </v-btn>
     </v-card-actions>
   </v-card>
 </template>
