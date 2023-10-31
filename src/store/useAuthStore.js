@@ -13,17 +13,13 @@ export const useAuthStore = defineStore("Auth", {
         //     const user = await res.json();
         //     this.user = user;
         // },
-        // async signUp(email, password) {
-        //     const res = await API.post("register", {
-        //         method: "POST",
-        //         headers: {
-        //             "Content-Type": "application/json",
-        //         },
-        //         body: JSON.stringify({ email, password }),
-        //     });
-        //     const user = await res.json()
-        //     this.user = user;
-        // },
+        async signUp(payload) {
+            await API.post("/signup", payload)
+                .then((response) => {
+                    this.signIn(response.data.data)
+                })
+
+        },
         async signIn(payload) {
             await API.post("/login", payload)
                 .then((response) => {

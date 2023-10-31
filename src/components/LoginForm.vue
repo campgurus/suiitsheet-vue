@@ -1,6 +1,5 @@
 <script>
 import {defineComponent} from 'vue'
-// import API from "@/utils/API";
 import {useAuthStore} from "@/store/useAuthStore";
 import {mapActions} from "pinia";
 
@@ -12,17 +11,6 @@ export default defineComponent({
     isValid: true
   }),
   methods: {
-    // async submitForm () {
-    //   await API.post('/login', {
-    //     user: {
-    //       email: this.email,
-    //       password: this.password
-    //     }
-    //   }).then(async (response) => {
-    //     console.log('headers returns: ', response.headers.authorization)
-    //     // this.$router.push({ path: '/' })
-    //   })
-    // }
     ...mapActions(useAuthStore, ['signIn']),
     async submitForm () {
       await this.signIn({

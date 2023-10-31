@@ -1,5 +1,7 @@
 <script>
 import {defineComponent} from 'vue'
+import {useAuthStore} from "@/store/useAuthStore";
+import {mapActions} from "pinia";
 
 export default defineComponent({
   name: "RegistrationForm",
@@ -18,7 +20,18 @@ export default defineComponent({
       v => /(?=.*\d)/.test(v) || 'Must have one number',
       v => /([!@$%])/.test(v) || 'Must have one special character [!@#$%]'
     ]
-  })
+  }),
+  methods: {
+    ...mapActions(useAuthStore, ['signUp']),
+    async submitForm () {
+      await this.signUp({
+        user: {
+          email: this.email,
+          password: this.password
+        }
+      })
+    }
+  }
 })
 </script>
 
@@ -48,6 +61,7 @@ export default defineComponent({
       <v-btn
           color="primary"
           :disabled="!isValid"
+          @click="submitForm"
       >
         Register
       </v-btn>
