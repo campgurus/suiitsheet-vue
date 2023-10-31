@@ -26,8 +26,10 @@ export default defineComponent({
     ...mapActions(useAuthStore, ['signIn']),
     async submitForm () {
       await this.signIn({
-        email: this.email,
-        password: this.password
+        user: {
+          email: this.email,
+          password: this.password
+        }
       })
     }
   }
