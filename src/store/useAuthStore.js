@@ -27,7 +27,11 @@ export const useAuthStore = defineStore("Auth", {
             await API.post("/login", payload)
                 .then((response) => {
                     // this.setState({ datasets: response.data })
-                    console.log('response is: ', response.data)
+                    // console.log('response is: ', response.data)
+                    console.log('response header is: ', response.headers.authorization)
+                    const token = response.headers.authorization.split(" ")[1]
+                    localStorage.setItem('token', token)
+                    localStorage.setItem('user', JSON.stringify(response.data.data));
                 })
                 .catch(console.log)
         },
