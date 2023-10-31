@@ -1,5 +1,6 @@
 <script>
 import {defineComponent} from 'vue'
+import API from "@/utils/API";
 
 export default defineComponent({
   name: "LoginForm",
@@ -7,7 +8,20 @@ export default defineComponent({
     email: null,
     password: null,
     isValid: true
-  })
+  }),
+  methods: {
+    async submitForm () {
+      await API.post('/login', {
+        user: {
+          email: this.email,
+          password: this.password
+        }
+      }).then(async (response) => {
+        console.log('headers returns: ', response.headers.authorization)
+        // this.$router.push({ path: '/' })
+      })
+    }
+  }
 })
 </script>
 
@@ -20,6 +34,7 @@ export default defineComponent({
             label="Email"
             v-model="email"
             :rules="[v => !!v || 'Email is required']"
+            error-count="2"
             required
         ></v-text-field>
         <v-text-field
@@ -27,6 +42,7 @@ export default defineComponent({
             v-model="password"
             type="password"
             :rules="[v => !!v || 'Password is required']"
+            error-count="5"
             required
         ></v-text-field>
       </v-form>
@@ -35,6 +51,7 @@ export default defineComponent({
       <v-btn
           color="primary"
           :disabled="!isValid"
+          @click = "submitForm"
       >
         Login
       </v-btn>
