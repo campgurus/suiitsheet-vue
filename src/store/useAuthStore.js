@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import API from "@/utils/API";
 export const useAuthStore = defineStore("Auth", {
     state: () => ({
-        user: JSON.parse(localStorage.getItem('user')),
+        user: JSON.parse(localStorage.getItem('user')) || null,
         token: localStorage.getItem('token') || null
     }),
 
