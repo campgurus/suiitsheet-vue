@@ -15,8 +15,8 @@ export const useAuthStore = defineStore("Auth", {
         // },
         async signUp(payload) {
             await API.post("/signup", payload)
-                .then((response) => {
-                    this.signIn(response.data.data)
+                .then(() => {
+                    this.signIn(payload) //is this right?
                 })
 
         },
