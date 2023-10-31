@@ -37,7 +37,7 @@ export default defineComponent({
     <v-spacer></v-spacer>
 
 
-    <router-link :to="{name: 'login'}">
+    <router-link :to="{name: 'login-signup'}">
       <!--        <v-btn icon> <v-icon> mdi-account </v-icon> </v-btn>-->
       <v-btn>Login</v-btn>
     </router-link>

@@ -8,7 +8,13 @@ const config = {
         // 'Content-Type': 'application/vnd.api+json',
         Accept: '*/*',
         // Accept: 'application/vnd.api+json',
-        Authorization: 'JWT ' + localStorage.getItem('token')
+        Authorization: {
+            toString () {
+                if (localStorage.getItem('token')) {
+                    return `Bearer ${localStorage.getItem('token')}`
+                }
+            }
+        }
     },
     xsrfCookieName: 'csrftoken',
     xsrfHeaderName: 'X-CSRFToken',
@@ -16,6 +22,19 @@ const config = {
 }
 
 const API = axios.create(config)
+
+// axios.interceptors.response.use(function (response) {
+//     if(response.headers['Authorization']) {
+//         const accessToken = response.headers['Authorization']
+//         console.log('token is: ', accessToken)
+//         window.localStorage.setItem('token', accessToken);
+//     } else {
+//         window.localStorage.removeItem('authHeaders');
+//     }
+//     return response;
+// }, function (error) {
+//     return Promise.reject(error)
+// });
 
 // API.interceptors.response.use(undefined, function (error) {
 //     if (error) {
