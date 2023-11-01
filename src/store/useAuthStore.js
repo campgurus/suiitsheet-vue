@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import API from "@/utils/API";
+import router from "@/router";
 export const useAuthStore = defineStore("Auth", {
     state: () => ({
         user: JSON.parse(localStorage.getItem('user')) || null,
@@ -47,6 +48,7 @@ export const useAuthStore = defineStore("Auth", {
             this.user = null
             localStorage.removeItem('user')
             localStorage.removeItem('token')
+            router.push('/login');
         }
     },
 });

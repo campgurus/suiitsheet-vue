@@ -2,7 +2,7 @@
 import {defineComponent} from 'vue'
 import {mdiAccount, mdiHome} from "@mdi/js";
 import {useAuthStore} from "@/store/useAuthStore";
-import { mapState } from 'pinia'
+import { mapState, mapActions } from 'pinia'
 
 export default defineComponent({
   name: "NavBar",
@@ -13,15 +13,12 @@ export default defineComponent({
     }
   },
   computed: {
-    ...mapState(useAuthStore, {
-      user: 'user'
-      })
+    ...mapState(useAuthStore, ["isLoggedIn"])
   },
   methods: {
-    ...mapState(useAuthStore, 'user'),
+    ...mapActions(useAuthStore, ['logout']),
     async signOut () {
-      localStorage.removeItem('user')
-      localStorage.removeItem('token')
+      this.logout()
     }
   }
 })
@@ -52,6 +49,7 @@ export default defineComponent({
 
 
     <router-link
+        v-if="!isLoggedIn"
         :to="{name: 'login-signup'}"
         v-show="!user"
     >
@@ -63,7 +61,7 @@ export default defineComponent({
     </router-link>
 
     <v-btn
-        v-show="user"
+        v-show="isLoggedIn"
         @click="signOut"
     >
       Logout
