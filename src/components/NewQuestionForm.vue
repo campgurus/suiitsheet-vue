@@ -38,6 +38,8 @@ export default defineComponent({
     >
       <v-btn
           v-bind="props"
+          variant="flat"
+          color="primary-blue"
       >
         Add a Question
       </v-btn>
