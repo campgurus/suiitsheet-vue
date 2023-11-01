@@ -27,12 +27,25 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="">
-    <input
-        v-model="query" type="text"
-        @change="findQuestions(query)"
-    />
-  </div>
+  <v-card
+      class="mx-auto"
+      color="grey-lighten-3"
+      max-width="400"
+  >
+    <v-card-text>
+      <v-text-field
+          :loading="loading"
+          density="compact"
+          variant="solo"
+          label="Search for questions"
+          append-inner-icon="mdi-magnify"
+          single-line
+          hide-details
+          v-model="query" type="text"
+          @change="findQuestions(query)"
+      ></v-text-field>
+    </v-card-text>
+  </v-card>
 </template>
 
 <style scoped>
