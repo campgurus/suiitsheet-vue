@@ -34,7 +34,7 @@ export default defineComponent({
 
 <template>
   <v-card
-      class="mx-auto"
+      class="mx-auto my-5"
       color="grey-lighten-3"
       max-width="400"
   >

@@ -1,7 +1,7 @@
 <template>
   <div class="">
-    <search-form />
     <new-question-form/>
+    <search-form />
     <question-list />
   </div>
 </template>

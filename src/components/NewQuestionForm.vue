@@ -43,7 +43,7 @@ export default defineComponent({
       </v-btn>
     </template>
     <v-card>
-      <v-card-title>
+      <v-card-title class="my-5">
         <span class="text-h5">Add a Question</span>
       </v-card-title>
       <v-card-text>
