@@ -3,6 +3,7 @@ import {defineComponent} from 'vue'
 import API from "@/utils/API";
 import { useFAQListStore } from '../store/useFAQListStore';
 import { mapActions } from "pinia";
+import _ from "lodash";
 
 export default defineComponent({
   name: "SearchForm",
@@ -13,14 +14,19 @@ export default defineComponent({
   },
   methods: {
     ...mapActions(useFAQListStore, ["setQuestions"]),
-    async findQuestions () {
+    findQuestions: _.debounce(async function () {
       const results = await API.get('/questions', {
         params: {
           search: this.query
         }
       })
-      console.log('search results are: ', results.data)
-      this.setQuestions(results.data)
+        console.log('search results are: ', results.data)
+        await this.setQuestions(results.data)
+    }, 400),
+  },
+  watch: {
+    'query' () {
+      this.findQuestions()
     }
   }
 })
