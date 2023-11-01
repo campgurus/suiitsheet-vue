@@ -2,6 +2,8 @@
 import {defineComponent} from 'vue'
 import {mdiPencil} from "@mdi/js";
 import API from "@/utils/API";
+import { useAuthStore } from "@/store/useAuthStore";
+import { mapState } from "pinia";
 
 export default defineComponent({
   name: "EditQuestionForm",
@@ -17,6 +19,9 @@ export default defineComponent({
         return {}
       }
     }
+  },
+  computed: {
+    ...mapState(useAuthStore, ["isAdmin", "isLoggedIn"])
   },
   mounted() {
     if (this.question) {
@@ -42,6 +47,7 @@ export default defineComponent({
   >
     <template v-slot:activator="{ props }">
       <v-btn
+          v-if="isLoggedIn && isAdmin"
           color="orange-lighten-2"
           v-bind="props"
       >
