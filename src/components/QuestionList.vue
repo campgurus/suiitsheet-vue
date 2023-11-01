@@ -5,6 +5,7 @@ import EditQuestionForm from "@/components/EditQuestionForm.vue";
 import AnswerText from "@/components/AnswerText.vue";
 import NewAnswerForm from "@/components/NewAnswerForm.vue";
 import { useFAQListStore } from '../store/useFAQListStore';
+import { useAuthStore } from "@/store/useAuthStore";
 import { mapState, mapActions } from "pinia";
 import API from "@/utils/API";
 
@@ -22,7 +23,8 @@ export default defineComponent({
     }
   },
   computed: {
-    ...mapState(useFAQListStore, ["FAQList"])
+    ...mapState(useFAQListStore, ["FAQList"]),
+    ...mapState(useAuthStore, ["isAdmin", "isLoggedIn"])
   },
   async mounted () {
     await this.getQuestions()
@@ -57,6 +59,7 @@ export default defineComponent({
               </v-col-2>
             </v-col>
             <v-btn
+                v-if="isLoggedIn && isAdmin"
                 @click="deleteQuestion(question)"
             >DELETE</v-btn>
           </v-row>
