@@ -1,6 +1,6 @@
 <script>
 import {defineComponent} from 'vue'
-import { mdiPencil } from '@mdi/js';
+import { mdiPencil, mdiDelete } from '@mdi/js';
 import EditQuestionForm from "@/components/EditQuestionForm.vue";
 import AnswerText from "@/components/AnswerText.vue";
 import NewAnswerForm from "@/components/NewAnswerForm.vue";
@@ -17,7 +17,8 @@ export default defineComponent({
   },
   data () {
     return {
-      mdiPencil
+      mdiPencil,
+      mdiDelete
     }
   },
   computed: {
@@ -47,12 +48,14 @@ export default defineComponent({
       >
         <v-expansion-panel-title>
           <v-row no-gutters>
-            <v-col-10 class="d-flex justify-start">
-              <strong class="mr-2">Question: </strong> {{ question.body }}
-            </v-col-10>
-            <v-col-2>
-              <edit-question-form :question="question"/>
-            </v-col-2>
+            <v-col>
+              <v-col-10 class="d-flex justify-start">
+                <strong class="mr-2">Question: </strong> {{ question.body }}
+              </v-col-10>
+              <v-col-2>
+                <edit-question-form :question="question"/>
+              </v-col-2>
+            </v-col>
             <v-btn
                 @click="deleteQuestion(question)"
             >DELETE</v-btn>

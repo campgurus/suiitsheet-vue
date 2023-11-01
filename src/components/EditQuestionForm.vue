@@ -42,7 +42,7 @@ export default defineComponent({
   >
     <template v-slot:activator="{ props }">
       <v-btn
-          color="primary"
+          color="orange-lighten-2"
           v-bind="props"
       >
         <p>Edit</p>
