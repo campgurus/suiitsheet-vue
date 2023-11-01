@@ -6,13 +6,22 @@ export const useAuthStore = defineStore("Auth", {
         token: localStorage.getItem('token') || null
     }),
 
+    getters: {
+        isLoggedIn (state) {
+            return state.user !== null
+        },
+        isAdmin (state) {
+            return state.user.role === "admin"
+        }
+    },
+
     actions: {
-        // async getUser() {
-        //     const res = await API.get("/user");
-        //
-        //     const user = await res.json();
-        //     this.user = user;
-        // },
+        async getUser() {
+            const res = await API.get("/current_user");
+
+            const user = await res.json();
+            this.user = user;
+        },
         async signUp(payload) {
             await API.post("/signup", payload)
                 .then(() => {
