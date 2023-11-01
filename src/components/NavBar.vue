@@ -1,6 +1,8 @@
 <script>
 import {defineComponent} from 'vue'
 import {mdiAccount, mdiHome} from "@mdi/js";
+import {useAuthStore} from "@/store/useAuthStore";
+import { mapState } from 'pinia'
 
 export default defineComponent({
   name: "NavBar",
@@ -8,6 +10,18 @@ export default defineComponent({
     return {
       mdiAccount,
       mdiHome
+    }
+  },
+  computed: {
+    ...mapState(useAuthStore, {
+      user: 'user'
+      })
+  },
+  methods: {
+    ...mapState(useAuthStore, 'user'),
+    async signOut () {
+      localStorage.removeItem('user')
+      localStorage.removeItem('token')
     }
   }
 })
@@ -37,10 +51,23 @@ export default defineComponent({
     <v-spacer></v-spacer>
 
 
-    <router-link :to="{name: 'login-signup'}">
+    <router-link
+        :to="{name: 'login-signup'}"
+        v-show="!user"
+    >
       <!--        <v-btn icon> <v-icon> mdi-account </v-icon> </v-btn>-->
-      <v-btn>Login</v-btn>
+      <v-btn
+      >
+        Login
+      </v-btn>
     </router-link>
+
+    <v-btn
+        v-show="user"
+        @click="signOut"
+    >
+      Logout
+    </v-btn>
   </v-app-bar>
 </template>
 

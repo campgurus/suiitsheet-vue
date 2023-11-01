@@ -26,13 +26,18 @@ export const useAuthStore = defineStore("Auth", {
                     // this.setState({ datasets: response.data })
                     // console.log('response is: ', response.data)
                     console.log('response header is: ', response.headers.authorization)
-                    const token = response.headers.authorization.split(" ")[1]
-                    localStorage.setItem('token', token)
+                    const accessToken = response.headers.authorization.split(" ")[1]
+                    localStorage.setItem('token', accessToken)
                     localStorage.setItem('user', JSON.stringify(response.data.data));
                     this.user = JSON.parse(localStorage.getItem('user'))
-                    this.token = token
+                    this.token = accessToken
                 })
                 .catch(console.log)
         },
+        logout() {
+            this.user = null
+            localStorage.removeItem('user')
+            localStorage.removeItem('token')
+        }
     },
 });
