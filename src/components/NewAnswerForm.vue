@@ -2,6 +2,8 @@
 import {defineComponent} from 'vue'
 import {mdiPencil} from "@mdi/js";
 import API from "@/utils/API";
+import { useAuthStore } from "@/store/useAuthStore";
+import {mapState} from "pinia";
 
 export default defineComponent({
   name: "NewAnswerForm",
@@ -19,13 +21,19 @@ export default defineComponent({
     }
   },
   methods: {
+    ...mapState(useAuthStore, ['isLoggedIn']),
     async saveAnswer () {
-      await API.post(`/questions/${this.question.id}/answers`, {
-        answer: {
-          body: this.formAnswer,
-          question_id: this.question.id
-        }
-      })
+      console.log('logged in?', this.isLoggedIn())
+      if (this.isLoggedIn()) {
+        await API.post(`/questions/${this.question.id}/answers`, {
+          answer: {
+            body: this.formAnswer,
+            question_id: this.question.id
+          }
+        })
+      } else {
+        alert('you need to login to add a question')
+      }
       this.dialog = false
     }
   }

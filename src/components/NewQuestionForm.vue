@@ -3,7 +3,8 @@ import {defineComponent} from 'vue'
 import {mdiPencil} from "@mdi/js";
 import API from "@/utils/API";
 import { useFAQListStore } from '../store/useFAQListStore';
-import { mapActions } from "pinia";
+import { useAuthStore} from "@/store/useAuthStore";
+import { mapActions, mapState } from "pinia";
 
 export default defineComponent({
   name: "NewQuestionForm",
@@ -14,12 +15,17 @@ export default defineComponent({
   }),
   methods: {
     ...mapActions(useFAQListStore, ["getQuestions"]),
+    ...mapState(useAuthStore, ['isLoggedIn']),
     async saveQuestion () {
-      await API.post(`/questions/`, {
-        question: {
-          body: this.formQuestion
-        }
-      })
+      if (this.isLoggedIn()) {
+        await API.post(`/questions/`, {
+          question: {
+            body: this.formQuestion
+          }
+        })
+      } else {
+        alert('you need to login to add a question')
+      }
       await this.getQuestions()
       this.dialog = false
     }
