@@ -41,6 +41,7 @@ export const useAuthStore = defineStore("Auth", {
                     localStorage.setItem('user', JSON.stringify(response.data.data));
                     this.user = JSON.parse(localStorage.getItem('user'))
                     this.token = accessToken
+                    router.push('/');
                 })
                 .catch(console.log)
         },
@@ -48,7 +49,7 @@ export const useAuthStore = defineStore("Auth", {
             this.user = null
             localStorage.removeItem('user')
             localStorage.removeItem('token')
-            router.push('/login');
+            router.push('/login-signup');
         }
     },
 });
