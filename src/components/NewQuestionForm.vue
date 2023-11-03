@@ -1,6 +1,5 @@
 <script>
 import {defineComponent} from 'vue'
-import {mdiPencil} from "@mdi/js";
 import API from "@/utils/API";
 import { useFAQListStore } from '../store/useFAQListStore';
 import { useAuthStore} from "@/store/useAuthStore";
@@ -10,14 +9,13 @@ export default defineComponent({
   name: "NewQuestionForm",
   data: () => ({
     dialog: false,
-    mdiPencil,
     formQuestion: ''
   }),
   methods: {
     ...mapActions(useFAQListStore, ["getQuestions"]),
     ...mapState(useAuthStore, ['isLoggedIn']),
     async saveQuestion () {
-      if (this.isLoggedIn()) {
+      if (this.isLoggedIn) {
         await API.post(`/questions/`, {
           question: {
             body: this.formQuestion
@@ -69,7 +67,6 @@ export default defineComponent({
             </v-col>
           </v-row>
         </v-container>
-        <small>*indicates required field</small>
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>

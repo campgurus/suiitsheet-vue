@@ -1,16 +1,16 @@
 <script>
 import {defineComponent} from 'vue'
-import {mdiPencil} from "@mdi/js";
 import API from "@/utils/API";
 import { useAuthStore } from "@/store/useAuthStore";
 import {mapState} from "pinia";
+import TextEditor from './TextEditor.vue'
 
 export default defineComponent({
   name: "NewAnswerForm",
   data: () => ({
     dialog: false,
-    mdiPencil,
-    formAnswer: ''
+    formAnswer: '',
+    content: ''
   }),
   props: {
     question: {
@@ -20,11 +20,15 @@ export default defineComponent({
       }
     }
   },
+  components: {
+    TextEditor
+  },
   methods: {
     ...mapState(useAuthStore, ['isLoggedIn']),
     async saveAnswer () {
-      console.log('logged in?', this.isLoggedIn())
-      if (this.isLoggedIn()) {
+      console.log('logged in?', this.isLoggedIn)
+      console.log('answer is: ', this.formAnswer)
+      if (this.isLoggedIn) {
         await API.post(`/questions/${this.question.id}/answers`, {
           answer: {
             body: this.formAnswer,
@@ -67,14 +71,14 @@ export default defineComponent({
                 sm="6"
                 md="4"
             >
-              <v-text-field
-                  required
-                  v-model="formAnswer"
-              ></v-text-field>
+                <text-editor v-model="formAnswer" />
+<!--              <v-text-field-->
+<!--                  required-->
+<!--                  v-model="formAnswer"-->
+<!--              ></v-text-field>-->
             </v-col>
           </v-row>
         </v-container>
-        <small>*indicates required field</small>
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
