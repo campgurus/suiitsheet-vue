@@ -17,7 +17,7 @@ export default defineComponent({
     ...mapActions(useFAQListStore, ["getQuestions"]),
     ...mapState(useAuthStore, ['isLoggedIn']),
     async saveQuestion () {
-      if (this.isLoggedIn()) {
+      if (this.isLoggedIn) {
         await API.post(`/questions/`, {
           question: {
             body: this.formQuestion
@@ -69,7 +69,6 @@ export default defineComponent({
             </v-col>
           </v-row>
         </v-container>
-        <small>*indicates required field</small>
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
