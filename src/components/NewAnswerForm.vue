@@ -64,7 +64,6 @@ export default defineComponent({
         <span class="text-h5">New Answer</span>
       </v-card-title>
       <v-card-text>
-        <p>{{formAnswer}}</p>
         <v-container>
           <v-row>
             <v-col
