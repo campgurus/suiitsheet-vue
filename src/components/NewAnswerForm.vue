@@ -1,6 +1,5 @@
 <script>
 import {defineComponent} from 'vue'
-import {mdiPencil} from "@mdi/js";
 import API from "@/utils/API";
 import { useAuthStore } from "@/store/useAuthStore";
 import {mapState} from "pinia";
@@ -10,7 +9,6 @@ export default defineComponent({
   name: "NewAnswerForm",
   data: () => ({
     dialog: false,
-    mdiPencil,
     formAnswer: '',
     content: ''
   }),

@@ -1,6 +1,5 @@
 <script>
 import {defineComponent} from 'vue'
-import {mdiPencil} from "@mdi/js";
 import API from "@/utils/API";
 import { useFAQListStore } from '../store/useFAQListStore';
 import { useAuthStore} from "@/store/useAuthStore";
@@ -10,7 +9,6 @@ export default defineComponent({
   name: "NewQuestionForm",
   data: () => ({
     dialog: false,
-    mdiPencil,
     formQuestion: ''
   }),
   methods: {
