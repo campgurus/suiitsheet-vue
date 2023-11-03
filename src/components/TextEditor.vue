@@ -45,6 +45,12 @@ export default defineComponent({
       extensions: [
         StarterKit,
       ],
+        editorProps: {
+          attributes: {
+            class: 'border',
+            style: "padding: 25px;"
+          },
+        },
       content: this.modelValue,
       onUpdate: () => {
         // HTML
@@ -63,5 +69,14 @@ export default defineComponent({
 </script>
 
 <template>
-  <editor-content :editor="editor" />
+  <editor-content
+      :editor="editor"
+  />
 </template>
+
+<style scoped>
+.tiptap p {
+  margin: 1em 0;
+  text-color: blue;
+}
+</style>
