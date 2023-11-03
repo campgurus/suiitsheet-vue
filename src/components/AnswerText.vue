@@ -31,9 +31,6 @@ export default defineComponent({
         fluid
     >
       <v-card-text>
-<!--        <p class="text-left">-->
-<!--          {{ answer.body }}-->
-<!--        </p>-->
         <div v-html="answer.body"></div>
       </v-card-text>
       <v-card-actions>
