@@ -70,11 +70,7 @@ export default defineComponent({
               :key="answer.id"
               no-gutters
           >
-            <answer-text
-              :answer="answer"
-            >
-
-            </answer-text>
+            <answer-text :answer="answer" />
           </v-row>
 
           <v-card-actions>
