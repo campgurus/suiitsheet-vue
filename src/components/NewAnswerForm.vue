@@ -2,8 +2,9 @@
 import {defineComponent} from 'vue'
 import API from "@/utils/API";
 import { useAuthStore } from "@/store/useAuthStore";
-import {mapState} from "pinia";
+import {mapActions, mapState} from "pinia";
 import TextEditor from './TextEditor.vue'
+import {useFAQListStore} from "@/store/useFAQListStore";
 
 export default defineComponent({
   name: "NewAnswerForm",
@@ -25,6 +26,7 @@ export default defineComponent({
   },
   methods: {
     ...mapState(useAuthStore, ['isLoggedIn']),
+    ...mapActions(useFAQListStore, ['getQuestions']),
     async saveAnswer () {
       console.log('logged in?', this.isLoggedIn)
       console.log('answer is: ', this.formAnswer)
@@ -35,6 +37,7 @@ export default defineComponent({
             question_id: this.question.id
           }
         })
+        await this.getQuestions()
       } else {
         alert('you need to login to add a question')
       }
