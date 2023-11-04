@@ -1,6 +1,8 @@
 <script>
 import {defineComponent} from 'vue'
 import API from '@/utils/API'
+import {useFAQListStore} from "@/store/useFAQListStore";
+import {mapActions} from "pinia";
 
 export default defineComponent({
   name: "AnswerText",
@@ -13,9 +15,11 @@ export default defineComponent({
     }
   },
   methods: {
+    ...mapActions(useFAQListStore, ['getQuestions']),
     async deleteAnswer () {
       if (confirm("Do you really want to delete?")) {
         await API.delete(`/questions/${this.answer.question_id}/answers/${this.answer.id}`)
+        await this.getQuestions()
       }
     }
   }
