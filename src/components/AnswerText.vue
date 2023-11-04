@@ -31,7 +31,10 @@ export default defineComponent({
         fluid
     >
       <v-card-text>
-        <div v-html="answer.body"></div>
+        <div
+            v-html="answer.body"
+            class="text-left"
+        ></div>
       </v-card-text>
       <v-card-actions>
         <v-btn
