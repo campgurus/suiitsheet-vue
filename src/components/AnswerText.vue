@@ -2,7 +2,8 @@
 import {defineComponent} from 'vue'
 import API from '@/utils/API'
 import {useFAQListStore} from "@/store/useFAQListStore";
-import {mapActions} from "pinia";
+import {mapActions, mapState} from "pinia";
+import {useAuthStore} from "@/store/useAuthStore";
 
 export default defineComponent({
   name: "AnswerText",
@@ -16,6 +17,7 @@ export default defineComponent({
   },
   methods: {
     ...mapActions(useFAQListStore, ['getQuestions']),
+    ...mapState(useAuthStore, ['isLoggedIn']),
     async deleteAnswer () {
       if (confirm("Do you really want to delete?")) {
         await API.delete(`/questions/${this.answer.question_id}/answers/${this.answer.id}`)

@@ -53,6 +53,7 @@ export default defineComponent({
             <v-col>
               <v-col-10 class="d-flex justify-start">
                 <strong class="mr-2">Question: </strong> {{ question.body }}
+                <span v-if="question.answers.length < 1" style="color: red"> (Needs Answer)</span>
               </v-col-10>
               <v-col-2>
                 <edit-question-form :question="question"/>
