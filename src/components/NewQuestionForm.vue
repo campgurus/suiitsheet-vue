@@ -13,6 +13,7 @@ export default defineComponent({
   }),
   methods: {
     ...mapActions(useFAQListStore, ["getQuestions"]),
+    ...mapActions(useAuthStore, ["logout"]),
     ...mapState(useAuthStore, ['isLoggedIn']),
     async saveQuestion () {
       if (this.isLoggedIn) {
@@ -21,6 +22,18 @@ export default defineComponent({
             body: this.formQuestion
           }
         })
+        .catch((error) => {
+          if (error.response.status === 401) {
+            // Handle the unauthorized error (e.g., show an error message)
+            console.log('Unauthorized. Please log in.');
+            alert('Your login has expired. You need to login again.')
+            this.logout()
+            this.$router.push('/login-signup')
+          } else {
+            // Handle other errors here
+            console.error('Some kind of error occurred:', error.response.status);
+          }
+        });
       } else {
         alert('you need to login to add a question')
       }
